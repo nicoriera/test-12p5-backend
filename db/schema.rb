@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_24_093604) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_24_143639) do
   create_table "bikes", force: :cascade do |t|
     t.string "bike_type"
     t.decimal "price"
@@ -25,6 +25,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_24_093604) do
     t.date "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "period"
     t.index ["bike_id"], name: "index_subscriptions_on_bike_id"
     t.index ["user_id"], name: "index_subscriptions_on_user_id"
   end
