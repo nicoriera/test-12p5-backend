@@ -1,0 +1,13 @@
+<h1>Abonnements</h1>
+
+<ul>
+<% @subscriptions.each do |subscription| %>
+    <li>
+        <p><%= subscription.user.first_name %> <%= subscription.user.last_name %></p>
+        <p> Type de vélo : <%= subscription.bike.bike_type %> </p>
+        <p> Début de l'abonnement : <%= subscription.start_date %> </p>
+        <p> Fin de l'abonnement : <%= subscription.end_date %> </p>   
+    </li>
+<% end%>
+</ul>
+

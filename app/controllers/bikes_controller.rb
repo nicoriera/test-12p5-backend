@@ -1,6 +1,6 @@
 class BikesController < ApplicationController
-    belongs_action :set_bike, only: [:show, :edit, :update, :destroy]
-    belongs_action :check_admin, only: [:index, :destroy]
+    before_action :set_bike, only: [:show, :edit, :update, :destroy]
+    # before_action :check_admin, only: [:index, :destroy]
 
     def index
         @bikes = Bike.all
@@ -14,7 +14,7 @@ class BikesController < ApplicationController
     end
 
     def create
-        @bike : Bike.new(bike_params)
+        @bike = Bike.new(bike_params)
 
         if @bike.save
             redirect_to bikes_path, notice: "Bike created successfully"
@@ -42,9 +42,9 @@ class BikesController < ApplicationController
         @bike = Bike.find(params[:id])
     end
 
-    def check_admin
-        redirect_to bikes_path, notice: "You are not authorized to perform this action" unless current_user.admin?
-    end
+    # def check_admin
+    #     redirect_to bikes_path, notice: "You are not authorized to perform this action" unless current_user.admin?
+    # end
 
     def bike_params
         params.require(:bike).permit(:bike_type, :price)
