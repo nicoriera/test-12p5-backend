@@ -10,4 +10,5 @@
     </li>
 <% end%>
 </ul>
+<%= button_to "Annuler cette abonnement", @subscription, method: :delete if policy(@subscription).destroy? %>
 

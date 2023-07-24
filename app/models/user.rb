@@ -8,6 +8,7 @@ class User < ApplicationRecord
   after_initialize :set_default_role, :if => :new_record?
   
   has_many :subscriptions
+  has_many :bikes, through: :subscriptions
   
   def set_default_role
     self.role ||= :user
