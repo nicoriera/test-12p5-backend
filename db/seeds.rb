@@ -25,8 +25,8 @@ user_3 = User.create(first_name: "Jack", last_name: "Doe",email: "jack.doe@examp
 admin = User.create(first_name: "Admin", last_name: "User", email: "admin@example.com", password: "password", role: "admin")
 
 puts "Creating subscriptions..."
-Subscription.create(user: user, bike: bike_classic, start_date: Date.today, end_date: Date.today + 1.month)
-Subscription.create(user: user_2, bike: bike_long, start_date: Date.today, end_date: Date.today + 6.month)
-Subscription.create(user: user_3, bike: bike_cargo, start_date: Date.today, end_date: Date.today + 12.month)
+Subscription.create(user: user, bike: bike_classic, start_date: Date.today, end_date: Date.today + 1.month, period: "one_month")
+Subscription.create(user: user_2, bike: bike_long, start_date: Date.today, end_date: Date.today + 6.month, period: "six_months")
+Subscription.create(user: user_3, bike: bike_cargo, start_date: Date.today, end_date: Date.today + 12.month, period: "twelve_months")
 
 puts "Done!"
