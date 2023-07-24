@@ -1,30 +1,26 @@
 class SubscriptionsController < ApplicationController
+  before_action :authenticate_user!
 
   def index
     @subscriptions = Subscription.all
-    authorize @subscription
+
   end
 
   def new
     @subscription = Subscription.new
-    @bike = Bike.find(params[:bike_id])
-    authorize @subscription
   end
 
   def create
-    bike = Bike.find(params[:bike_id])
-    start_date = params[:start_date]
-    end_date = params[:end_date]
-
-    if current_user.subscribe(bike, start_date, end_date)
-        redirect_to subscriptions_path, notice: "You have successfully subscribed to #{bike.name}"
+   
+    @subscription = current_user.subscriptions.build(subscription_params)
+    if @subscription.save
+        redirect_to subscriptions_path, notice: "You have successfully subscribed"
     else
         render :new
-    end
+    end 
   end
 
   def destroy
-    authorize @subscription
     @subscription = Subscription.find(params[:id])
     
     if @subscription.cancel
@@ -34,4 +30,12 @@ class SubscriptionsController < ApplicationController
     end
         render :edit
   end
+
+  private
+
+  def subscription_params
+    params.require(:subscription).permit(:start_date, :end_date, :bike_id, :period)
+  end
+
+
 end

@@ -1,6 +1,7 @@
 class BikesController < ApplicationController
     before_action :set_bike, only: [:show, :edit, :update, :destroy]
-    # before_action :check_admin, only: [:index, :destroy]
+    
+
 
     def index
         @bikes = Bike.all

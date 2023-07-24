@@ -1,0 +1,15 @@
+<%= form_for @subscription do |f| %>
+  <%= f.label :bike_id, "Sélectionnez un vélo" %>
+  <%= f.collection_select(:bike_id, Bike.all, :id, :bike_type) %>
+
+  <%= f.label :period, "Sélectionnez une période d'abonnement" %>
+  <%= f.select(:period, Subscription.periods.keys.map { |period| [period.humanize, period] }) %>
+
+  <%= f.label :start_date, "Date de début" %>
+  <%= f.date_select :start_date %>
+
+  <%= f.label :end_date, "Date de fin" %>
+  <%= f.date_select :end_date %>
+
+  <%= f.submit "Souscrire" %>
+<% end %>

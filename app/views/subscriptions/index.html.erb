@@ -6,9 +6,14 @@
         <p><%= subscription.user.first_name %> <%= subscription.user.last_name %></p>
         <p> Type de vélo : <%= subscription.bike.bike_type %> </p>
         <p> Début de l'abonnement : <%= subscription.start_date %> </p>
-        <p> Fin de l'abonnement : <%= subscription.end_date %> </p>   
+        <p> Fin de l'abonnement : <%= subscription.end_date %> </p>  
+        <p> Prix : <%= subscription.bike.price %> € </p> 
+        <p> Period : <%= subscription.period %> </p>
     </li>
 <% end%>
 </ul>
-<%= button_to "Annuler cette abonnement", @subscription, method: :delete if policy(@subscription).destroy? %>
+
+<%= link_to "Souscrire", new_subscription_path %>
+
+
 
