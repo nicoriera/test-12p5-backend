@@ -1,4 +1,14 @@
-class SubscriptionPolicy < ApllicationPolicy
+class SubscriptionPolicy < ApplicationPolicy
+  class Scope < Scope
+    def resolve
+      if user.admin?
+        scope.all
+      else
+        scope.where(user: user)
+      end
+    end
+  end
+  
   def destroy?
     user.admin?
   end
@@ -10,5 +20,12 @@ class SubscriptionPolicy < ApllicationPolicy
   def index?
     true
   end
-end
 
+  def new?
+    true
+  end
+
+  def create?
+    true
+  end
+end

@@ -1,15 +1,35 @@
 <%= form_for @subscription do |f| %>
   <%= f.label :bike_id, "Sélectionnez un vélo" %>
-  <%= f.collection_select(:bike_id, Bike.all, :id, :bike_type) %>
+  <%= f.collection_select(:bike_id, @bikes, :id, :bike_type) %>
+  <% if @subscription.errors.full_messages_for(:bike_id).any? %>
+    <div class="alert alert-danger">
+      <%= @subscription.errors.full_messages_for(:bike_id).join(", ") %>
+    </div>
+  <% end %>
 
   <%= f.label :period, "Sélectionnez une période d'abonnement" %>
   <%= f.select(:period, Subscription.periods.keys.map { |period| [period.humanize, period] }) %>
+  <% if @subscription.errors.full_messages_for(:period).any? %>
+    <div class="alert alert-danger">
+      <%= @subscription.errors.full_messages_for(:period).join(", ") %>
+    </div>
+  <% end %>
 
   <%= f.label :start_date, "Date de début" %>
   <%= f.date_select :start_date %>
+  <% if @subscription.errors.full_messages_for(:start_date).any? %>
+    <div class="alert alert-danger">
+      <%= @subscription.errors.full_messages_for(:start_date).join(", ") %>
+    </div>
+  <% end %>
 
   <%= f.label :end_date, "Date de fin" %>
   <%= f.date_select :end_date %>
+  <% if @subscription.errors.full_messages_for(:end_date).any? %>
+    <div class="alert alert-danger">
+      <%= @subscription.errors.full_messages_for(:end_date).join(", ") %>
+    </div>
+  <% end %>
 
   <%= f.submit "Souscrire" %>
 <% end %>

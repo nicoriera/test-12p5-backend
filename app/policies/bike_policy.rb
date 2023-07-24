@@ -1,10 +1,12 @@
 class BikePolicy < ApplicationPolicy
-
     class Scope < Scope
         def resolve
-            user.admin? ? scope.all : scope.where(user_id: user.id)
+            scope.all
         end
     end
 
-
+    def index?
+        true
+    end
 end
+  
