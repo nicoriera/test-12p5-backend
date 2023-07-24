@@ -2,11 +2,13 @@ class SubscriptionsController < ApplicationController
 
   def index
     @subscriptions = Subscription.all
+    authorize @subscription
   end
 
   def new
     @subscription = Subscription.new
     @bike = Bike.find(params[:bike_id])
+    authorize @subscription
   end
 
   def create
@@ -22,6 +24,7 @@ class SubscriptionsController < ApplicationController
   end
 
   def destroy
+    authorize @subscription
     @subscription = Subscription.find(params[:id])
     
     if @subscription.cancel
