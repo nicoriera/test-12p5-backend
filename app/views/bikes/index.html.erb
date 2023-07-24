@@ -1,1 +1,10 @@
 <h1>Nos vélos</h1>
+
+<ul>
+<% @bikes.each do |bike| %>
+    <li>
+        <p><%= bike.bike_type %></p>
+        <p>Prix abonnement par mois <%= bike.price %> € </p>  
+    </li>
+<% end%>
+</ul>
