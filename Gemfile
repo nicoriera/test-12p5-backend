@@ -73,3 +73,9 @@ end
 
 gem 'devise'
 gem 'pundit'
+gem "rspec"
+
+group :development, :test do
+  gem 'rspec-rails', '~> 5.0'
+end
+
