@@ -1,0 +1,9 @@
+<h1>Mes Abonnements</h1>
+<% @user.subscriptions.each do |subscription| %>
+  <p>
+    <%= subscription.bike.name %> - <%= subscription.period %> - <%= number_to_currency(subscription.bike.price_per_month) %>/month
+    <% if current_user.admin? %>
+      <%= link_to "Cancel Subscription", subscription_path(subscription), method: :delete %>
+    <% end %>
+  </p>
+<% end %>

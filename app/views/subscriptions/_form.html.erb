@@ -1,5 +1,3 @@
-<h1>Louer un vélo</h1>
-
 <%= form_for @subscription do |f| %>
   <%= f.label :bike_id, "Sélectionnez un vélo" %>
   <%= f.collection_select(:bike_id, @bikes, :id, :bike_type) %>
