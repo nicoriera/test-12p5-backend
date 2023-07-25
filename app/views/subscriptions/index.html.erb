@@ -11,8 +11,13 @@
         <p> Period : <%= subscription.period %> </p>
     </li>
 <% if policy(subscription).destroy? %>
-  <%= link_to 'Cancel Subscription', subscription, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <%= link_to "Cancel Subscription",
+  subscription,
+  data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+%>
 <% end %>
+
+
 
 <% end%>
 </ul>
