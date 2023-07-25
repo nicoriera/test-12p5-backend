@@ -6,6 +6,11 @@ class SubscriptionsController < ApplicationController
     @subscriptions = policy_scope(Subscription)
   end
 
+  def show
+    @subscription = policy_scope(Subscription).find(params[:id])
+    authorize @subscription
+  end
+
   def new
     @subscription = Subscription.new
     @bikes = Bike.all
@@ -24,16 +29,15 @@ class SubscriptionsController < ApplicationController
     end 
   end
 
-def destroy
-  @subscription = Subscription.find(params[:id])
-  authorize @subscription
-
-  if @subscription.cancel
-      redirect_to subscriptions_path, notice: "You have successfully cancelled your subscription"
-  else
-      redirect_to subscriptions_path, alert: "There was an error cancelling your subscription"
+  def destroy
+    @subscription = Subscription.find(params[:id])
+    @subscription.destroy
+    authorize @subscription
+  
+    redirect_to subscriptions_path,  status: :see_other
   end
-end
+  
+  
 
 
   private
