@@ -25,10 +25,5 @@ class Subscription < ApplicationRecord
       errors.add(:period, "does not match start and end dates")
     end
   end
-
-
-  def cancel
-    self.destroy
-  end
   
 end
