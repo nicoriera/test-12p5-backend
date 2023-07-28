@@ -4,7 +4,7 @@ class UsersController < ApplicationController
     before_action :check_admin, only: [:index, :destroy]
 
     def index
-        @users = User.all
+        @users = policy_scope(User)
     end
 
     def show
@@ -41,8 +41,13 @@ class UsersController < ApplicationController
     private
 
     def set_user
-        @user = User.find(params[:id])
-    end
+        if params[:id].to_i.to_s == params[:id]
+          @user = User.find(params[:id])
+        else
+          redirect_to root_path, alert: "User not found"
+        end
+      end
+      
 
     def check_admin
         redirect_to users_path, notice: "You are not authorized to perform this action" unless current_user.admin?

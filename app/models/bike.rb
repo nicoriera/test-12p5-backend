@@ -1,4 +1,7 @@
 class Bike < ApplicationRecord
     has_many :subscriptions
-    # has_many :users, through: :subscriptions
+
+    validates :bike_type, presence: true
+    validates :price, presence: true
+   
 end

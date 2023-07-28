@@ -1,0 +1,14 @@
+<h1>Nos abonnés</h1>
+
+<ul>
+<% @users.each do |user| %>
+    <li>
+        <p>Prénom: <%= user.first_name%></p>
+        <p>Nom: <%= user.last_name %></p> 
+        <p>Email: <%= user.email %></p> 
+    </li>
+<% end %>
+</ul>
+
+<%= link_to "Abonnements des utilisateurs", subscriptions_path %>
+<%= link_to "Déconnexion", destroy_user_session_path, method: :delete %>
