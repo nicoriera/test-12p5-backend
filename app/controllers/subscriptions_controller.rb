@@ -37,9 +37,6 @@ class SubscriptionsController < ApplicationController
     redirect_to subscriptions_path,  status: :see_other
   end
   
-  
-
-
   private
 
   def subscription_params

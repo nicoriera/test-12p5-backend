@@ -9,4 +9,11 @@
 <% end%>
 </ul>
 
-<%= link_to "Souscrire", new_subscription_path %>
+<%= link_to "Souscrire à un abonnement", new_subscription_path %>
+<br>
+<% if current_user.admin? %>
+  <%= link_to "Abonnements des utilisateurs ", subscriptions_path %>
+  <% else %>
+
+<%= link_to "Vos abonnement(s)", subscriptions_path %>
+<% end %>
